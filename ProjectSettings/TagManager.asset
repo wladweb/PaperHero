@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2796753275
+    locked: 0
+  - name: Platforms
+    uniqueID: 248565933
+    locked: 0
+  - name: DecorBack
+    uniqueID: 147946933
+    locked: 0
+  - name: Live
+    uniqueID: 2046769803
+    locked: 0
+  - name: DecorFront
+    uniqueID: 897754667
+    locked: 0
