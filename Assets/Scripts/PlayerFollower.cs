@@ -7,11 +7,13 @@ public class PlayerFollower : MonoBehaviour
 
     void Start()
     {
-        _offset = transform.position - Player.transform.position;
+        if (Player != null)
+            _offset = transform.position - Player.transform.position;
     }
 
     void Update()
     {
-        transform.position = Player.transform.position + _offset;
+        if (Player != null)
+            transform.position = Player.transform.position + _offset;
     }
 }

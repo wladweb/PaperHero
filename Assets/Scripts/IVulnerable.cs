@@ -1,4 +1,7 @@
-﻿public interface IVulnerable
+﻿using UnityEngine.Events;
+
+public interface IVulnerable
 {
-    void TakeDamage(float damage);
+    void TakeDamage();
+    void Die();
 }

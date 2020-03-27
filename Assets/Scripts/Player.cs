@@ -6,28 +6,37 @@ public class Player : MonoBehaviour, IVulnerable
     private Animator _animator;
     private Jumper _jumper;
     private Mover _mover;
+    private Shooter _shooter;
     private float _currentDirection = 1;
-    [SerializeField] private float _health;
+    private float _animDirection;
 
-    [SerializeField] private UnityEvent TookDamage = new UnityEvent();
-    [SerializeField] private UnityEvent Death = new UnityEvent();
-
-    public void TakeDamage(float damage)
-    {
-        _health -= damage;
-        TookDamage.Invoke();
-
-        if (_health <= 0) Death.Invoke();
-    }
+    public UnityEvent TookDamage = new UnityEvent();
+    public UnityEvent Death = new UnityEvent();
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _jumper = GetComponent<Jumper>();
         _mover = GetComponent<Mover>();
+        _shooter = GetComponent<Shooter>();
     }
 
     void Update()
+    {
+        Move();
+        Jump();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _shooter.Shoot(_animDirection);
+        }
+    }
+
+    private void Move()
     {
         float direction = Input.GetAxisRaw("Horizontal");
 
@@ -37,14 +46,19 @@ public class Player : MonoBehaviour, IVulnerable
         {
             direction = _currentDirection;
         }
-        else 
+        else
         {
             _currentDirection = direction;
         }
+        
+        _animDirection = direction;
 
         _animator.SetFloat("Direction", direction);
         _animator.SetFloat("Speed", movementMagnitude);
+    }
 
+    private void Jump()
+    {
         if (Input.GetButtonDown("Jump"))
         {
             _jumper.Jump(true);
@@ -58,11 +72,6 @@ public class Player : MonoBehaviour, IVulnerable
         }
     }
 
-    public void InstantKill()
-    {
-        Death.Invoke();
-    }
-
     public void TakeDamageHandler()
     {
         _animator.SetTrigger("Damage");
@@ -71,6 +80,16 @@ public class Player : MonoBehaviour, IVulnerable
     public void DeathHandler()
     {
         _animator.SetTrigger("Death");
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
+    }
+
+    public void TakeDamage()
+    {
+        TookDamage.Invoke();
+    }
+
+    public void Die()
+    {
+        Death.Invoke();
     }
 }
