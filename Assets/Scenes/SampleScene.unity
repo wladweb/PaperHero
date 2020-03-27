@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 1509808}
   - component: {fileID: 1509812}
   - component: {fileID: 1509813}
+  - component: {fileID: 1509814}
+  - component: {fileID: 1509815}
   m_Layer: 0
   m_Name: PaperHero
   m_TagString: Untagged
@@ -266,10 +268,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd4dc96520ca874589b78acbb319bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _jumpForce: 6
-  _animator: {fileID: 1509813}
-  _rigidBody: {fileID: 1509808}
+  _health: 0
+  TookDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1509812}
+        m_MethodName: TakeDamageHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Death:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1509812}
+        m_MethodName: DeathHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1509813
 Animator:
   serializedVersion: 3
@@ -289,6 +316,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1509814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092da68d9605a694aa2ef7389f5bbd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: 6.08
+  _isLanded: 0
+--- !u!114 &1509815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6db99d4efde5d324f84fb01255a156d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5.67
 --- !u!1 &17388017
 GameObject:
   m_ObjectHideFlags: 0

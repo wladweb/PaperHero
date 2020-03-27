@@ -1,12 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour, IVulnerable
 {
     private Animator _animator;
     private Jumper _jumper;
     private Mover _mover;
     private float _currentDirection = 1;
-    private float _animationDirection;
+    [SerializeField] private float _health;
+
+    [SerializeField] private UnityEvent TookDamage = new UnityEvent();
+    [SerializeField] private UnityEvent Death = new UnityEvent();
+
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+        TookDamage.Invoke();
+
+        if (_health <= 0) Death.Invoke();
+    }
 
     private void Awake()
     {
@@ -44,5 +56,21 @@ public class PlayerMovement : MonoBehaviour
             _animator.ResetTrigger("Jump");
             _animator.SetTrigger("Land");
         }
+    }
+
+    public void InstantKill()
+    {
+        Death.Invoke();
+    }
+
+    public void TakeDamageHandler()
+    {
+        _animator.SetTrigger("Damage");
+    }
+
+    public void DeathHandler()
+    {
+        _animator.SetTrigger("Death");
+        Destroy(gameObject, 3f);
     }
 }
