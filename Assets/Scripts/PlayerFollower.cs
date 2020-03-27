@@ -10,7 +10,7 @@ public class PlayerFollower : MonoBehaviour
         _offset = transform.position - Player.transform.position;
     }
 
-    void LateUpdate()
+    void Update()
     {
         transform.position = Player.transform.position + _offset;
     }
