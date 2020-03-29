@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AgressiveEnvironmentComponent : MonoBehaviour
 {
-    private IVulnerable _victim;
+    private DamageTaker _victim;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent<IVulnerable>(out IVulnerable _victim))
+        if (collision.collider.TryGetComponent<DamageTaker>(out _victim))
         {
             _victim.Die();
         }

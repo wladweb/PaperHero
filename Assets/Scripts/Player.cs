@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
-public class Player : MonoBehaviour, IVulnerable
+
+public class Player : MonoBehaviour
 {
     private Animator _animator;
     private Jumper _jumper;
@@ -9,9 +9,6 @@ public class Player : MonoBehaviour, IVulnerable
     private Shooter _shooter;
     private float _currentDirection = 1;
     private float _animDirection;
-
-    public UnityEvent TookDamage = new UnityEvent();
-    public UnityEvent Death = new UnityEvent();
 
     private void Awake()
     {
@@ -81,15 +78,5 @@ public class Player : MonoBehaviour, IVulnerable
     {
         _animator.SetTrigger("Death");
         Destroy(gameObject, 1f);
-    }
-
-    public void TakeDamage()
-    {
-        TookDamage.Invoke();
-    }
-
-    public void Die()
-    {
-        Death.Invoke();
     }
 }

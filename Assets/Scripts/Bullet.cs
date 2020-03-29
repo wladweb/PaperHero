@@ -16,4 +16,10 @@ public class Bullet : MonoBehaviour
         _bulletRigidBody.velocity = new Vector2(_velocityX * DirectoinX, 0);
         Destroy(gameObject, 4f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Target");
+        Destroy(gameObject);
+    }
 }

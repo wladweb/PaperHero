@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class DamageTaker : MonoBehaviour
 {
     [SerializeField] private float _health = 100;
     private DamageGiver _damageGiver;
     private IVulnerable _victim;
+
+    public UnityEvent TookDamage;
+    public UnityEvent Death;
 
     private void Awake()
     {
@@ -29,11 +33,15 @@ public class DamageTaker : MonoBehaviour
 
     private void HandleDamage()
     {
-        Debug.Log(_damageGiver);
         _health -= _damageGiver.GetDamage();
-        _victim.TakeDamage();
+        TookDamage.Invoke();
 
         if (_health <= 0)
-            _victim.Die();
+            Death.Invoke();
+    }
+
+    public void Die()
+    {
+        Death.Invoke();
     }
 }
