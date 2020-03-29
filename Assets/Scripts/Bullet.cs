@@ -17,9 +17,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 4f);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Target");
-        Destroy(gameObject);
+        if (!collision.TryGetComponent<Bullet>(out Bullet bullet))
+        {
+            Destroy(gameObject);
+        }
     }
 }

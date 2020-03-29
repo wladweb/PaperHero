@@ -29,6 +29,12 @@ public class DamageTaker : MonoBehaviour
         { 
             HandleDamage();
         }
+        /*
+        if (collision.TryGetComponent<Bullet>(out Bullet bullet))
+        {
+            Destroy(bullet.gameObject);
+        }
+        */
     }
 
     private void HandleDamage()
