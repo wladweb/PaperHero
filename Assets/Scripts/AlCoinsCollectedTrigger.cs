@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AlCoinsCollectedTrigger : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class AlCoinsCollectedTrigger : MonoBehaviour
 
         foreach (Coin coin in _coins)
         {
-            coin.Collected += OnAllCoinsCollected;
+            coin.Collected += OnCoinCollected;
         }
     }
 
@@ -20,12 +18,17 @@ public class AlCoinsCollectedTrigger : MonoBehaviour
     {
         foreach (Coin coin in _coins)
         {
-            coin.Collected -= OnAllCoinsCollected;
+            coin.Collected -= OnCoinCollected;
         }
     }
 
-    private void OnAllCoinsCollected()
+    private void OnCoinCollected()
     {
-        Debug.Log("All coins collected!");
+        foreach (Coin coin in _coins)
+        {
+           if (coin.isActiveAndEnabled) return;
+        }
+
+        Debug.Log("All Coins collected!");
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Coin : MonoBehaviour
 {
     [SerializeField] private UnityEvent _collected = new UnityEvent();
+    public bool IsCollected;
 
     public event UnityAction Collected 
     {
@@ -13,13 +14,15 @@ public class Coin : MonoBehaviour
 
     public void CollectHandler()
     {
-        Debug.Log("Collected");
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _collected.Invoke();
-        Destroy(gameObject);
+        if (collision.TryGetComponent<Player>(out Player player))
+        {
+            _collected.Invoke();
+        }
     }
 }
 

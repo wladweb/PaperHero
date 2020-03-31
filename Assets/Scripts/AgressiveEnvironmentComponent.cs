@@ -8,7 +8,6 @@ public class AgressiveEnvironmentComponent : MonoBehaviour
     {
         if (collision.collider.TryGetComponent<DamageTaker>(out _victim))
         {
-            Debug.Log(_victim);
             _victim.Die();
         }
     }
