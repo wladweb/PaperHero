@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BeeBehaviour : MonoBehaviour
 {
@@ -20,5 +18,5 @@ public class BeeBehaviour : MonoBehaviour
     {
         _animator.SetTrigger("Death");
         Destroy(gameObject, 2f);
-;    }
+    }
 }
