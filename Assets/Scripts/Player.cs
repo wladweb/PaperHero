@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class Player : MonoBehaviour
 {
     private Animator _animator;
@@ -9,6 +8,7 @@ public class Player : MonoBehaviour
     private Shooter _shooter;
     private float _currentDirection = 1;
     private float _animDirection;
+    private AudioClip _deathSound;
 
     private void Awake()
     {
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
         _jumper = GetComponent<Jumper>();
         _mover = GetComponent<Mover>();
         _shooter = GetComponent<Shooter>();
+        _deathSound = GetComponent<AudioSource>().clip;
     }
 
     void Update()
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
     public void DeathHandler()
     {
         _animator.SetTrigger("Death");
+        AudioSource.PlayClipAtPoint(_deathSound, transform.position);
         Destroy(gameObject, 1f);
     }
 }
