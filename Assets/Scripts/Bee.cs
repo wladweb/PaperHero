@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class BeeBehaviour : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public class Bee : MonoBehaviour
 {
     private Animator _animator;
 

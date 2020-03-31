@@ -5,7 +5,9 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float _firteRate = 2f;
     [SerializeField] private float _ammoStartPositionOfsetX = 1;
     [SerializeField] private float _ammoStartPositionOfsetY = .25f;
+
     private float _nextShootTime = 0;
+
     public GameObject Ammo;
 
     public void Shoot(float directionX)
@@ -28,6 +30,6 @@ public class Shooter : MonoBehaviour
 
         GameObject bullet = Instantiate(Ammo, ammoStartPosition, Quaternion.identity);
         Bullet bulletComponent = bullet.GetComponent<Bullet>();
-        bulletComponent.DirectoinX = directionX;
+        bulletComponent.DirectionX = directionX;
     }
 }

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 
-public class MushroomBehaviour : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public class Mushroom : MonoBehaviour
 {
     private bool _isGrown;
-    private FlipHandler _flipHandler;
     private Animator _animator;
+    private FlipHandler _flipHandler;
     private Player _player;
     private Shooter _shooter;
 

@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class DamageTaker : MonoBehaviour
 {
     [SerializeField] private float _health = 100;
+
     private DamageGiver _damageGiver;
 
     public UnityEvent TookDamage;

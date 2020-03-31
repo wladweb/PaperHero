@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(AudioClip))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private UnityEvent CoinCollected;
+
     private Animator _animator;
+    private AudioClip _deathSound;
     private Jumper _jumper;
     private Mover _mover;
     private Shooter _shooter;
     private float _currentDirection = 1;
     private float _animDirection;
-    private AudioClip _deathSound;
 
     private void Awake()
     {
@@ -19,7 +24,7 @@ public class Player : MonoBehaviour
         _deathSound = GetComponent<AudioSource>().clip;
     }
 
-    void Update()
+    private void Update()
     {
         Move();
         Jump();
@@ -80,5 +85,14 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("Death");
         AudioSource.PlayClipAtPoint(_deathSound, transform.position);
         Destroy(gameObject, 1f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<Coin>(out Coin coin))
+        {
+            coin.gameObject.SetActive(false);
+            CoinCollected.Invoke();
+        }
     }
 }

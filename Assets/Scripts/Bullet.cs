@@ -1,19 +1,33 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    private Rigidbody2D _bulletRigidBody;
     [SerializeField] private float _velocityX = .7f;
-    public float DirectoinX;
+    [SerializeField] private float _directionX;
 
-    void Start()
+    private Rigidbody2D _bulletRigidBody;
+
+    public float DirectionX 
+    {
+        get
+        {
+            return _directionX;
+        }
+        set
+        {
+            _directionX = value;
+        }
+    }
+
+    private void Start()
     {
         _bulletRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        _bulletRigidBody.velocity = new Vector2(_velocityX * DirectoinX, 0);
+        _bulletRigidBody.velocity = new Vector2(_velocityX * _directionX, 0);
         Destroy(gameObject, 4f);
     }
 

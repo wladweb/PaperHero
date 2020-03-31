@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Jumper : MonoBehaviour
 {
-    private Rigidbody2D _rigidBody;
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private bool _isLanded;
+
+    private Rigidbody2D _rigidBody;
 
     private void Awake()
     {
@@ -21,7 +23,7 @@ public class Jumper : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlatformComponent>(out PlatformComponent platformComponent))
+        if (collision.gameObject.TryGetComponent<Platform>(out Platform platformComponent))
         {
             _isLanded = true;
         }
@@ -29,7 +31,7 @@ public class Jumper : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<PlatformComponent>(out PlatformComponent platformComponent))
+        if (collision.gameObject.TryGetComponent<Platform>(out Platform platformComponent))
         {
             _isLanded = false;
         }

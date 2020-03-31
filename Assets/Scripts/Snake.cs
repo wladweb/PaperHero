@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 
-public class SnakeBehaviour : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public class Snake : MonoBehaviour
 {
-    private FlipHandler _flipHandler;
-    private Animator _animator;
-    private Mover _mover;
-    private float _speed;
-    private Vector3 _startPosition;
     [SerializeField] private float _leftWalkLength = 2;
     [SerializeField] private float _rightWalkLength = 2;
 
-    enum SnakeStatus { Idle, Atack }
-    enum IdleDirection { Left = -1, Right = 1 }
+    private Animator _animator;
+    private FlipHandler _flipHandler;
+    private Mover _mover;
+    private Vector3 _startPosition;
+    private float _speed;
+
+    private enum SnakeStatus { Idle, Atack }
+    private enum IdleDirection { Left = -1, Right = 1 }
 
     private IdleDirection _currentIdelDirection = IdleDirection.Left;
     private SnakeStatus _currentStatus = SnakeStatus.Idle;
@@ -62,7 +64,7 @@ public class SnakeBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.TryGetComponent<MushroomBehaviour>(out MushroomBehaviour behavior))
+        if (collision.collider.TryGetComponent<Mushroom>(out Mushroom behavior))
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), behavior.GetComponent<Collider2D>());
         }

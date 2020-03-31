@@ -3,13 +3,12 @@
 public class WaypointMovement : MonoBehaviour
 {
     [SerializeField] private Transform _path;
-    private Transform[] _points;
-
-    private int _currentIndex;
-
     [SerializeField] private float _speed = 2;
 
-    void Start()
+    private Transform[] _points;
+    private int _currentIndex;
+
+    private void Start()
     {
         _points = new Transform[_path.childCount];
 
@@ -19,10 +18,8 @@ public class WaypointMovement : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        
-
         Transform currentTarget = _points[_currentIndex];
         transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, _speed * Time.deltaTime);
 
