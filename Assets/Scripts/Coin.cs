@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Coin : MonoBehaviour
 {
     [SerializeField] private UnityEvent _collected = new UnityEvent();
-    public bool IsCollected;
+    [SerializeField] private AudioClip _collectSound;
 
     public event UnityAction Collected 
     {
@@ -14,6 +14,7 @@ public class Coin : MonoBehaviour
 
     public void CollectHandler()
     {
+        AudioSource.PlayClipAtPoint(_collectSound, transform.position);
         gameObject.SetActive(false);
     }
 
